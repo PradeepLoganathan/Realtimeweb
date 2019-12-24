@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using RealtimeOrders.API.Models;
 using System.Threading.Tasks;
 
 namespace RealtimeOrders.API.Hubs
 {
-    public class OrderStatusHub : Hub
+    public class OrderStatusHub : Hub<IOrderStatusClient>
     {
-        public async Task BroadcastOrderStatus()
+        public async Task PlaceNewOrder(Order order)
         {
-            // Call the broadcastMessage method to update clients.
-            await Clients.All.SendAsync("broadcastorderstatus", "Order 1", "In Process");
+            // Call the newOrderPlaced method to update all clients.
+            await Clients.All.NewOrderPlaced(order);
         }
     }
 }

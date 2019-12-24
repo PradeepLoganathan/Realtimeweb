@@ -54,7 +54,7 @@ namespace RealtimeOrders.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<OrderStatusHub>("/orderstatus");
+                endpoints.MapHub<OrderStatusHub>("/orderstatushub");
             });
         }
     }

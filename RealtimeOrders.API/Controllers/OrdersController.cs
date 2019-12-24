@@ -12,7 +12,12 @@ namespace RealtimeOrders.API.Controllers
     [Route("api/[controller]")]
     public class OrdersController : Controller
     {
-        private readonly IHubContext<OrderStatusHub> orderStatusHub;
+        private readonly IHubContext<OrderStatusHub, IOrderStatusClient> orderStatusHubContext;
+
+        public OrdersController(IHubContext<OrderStatusHub, IOrderStatusClient>  orderStatusHubContext)
+        {
+            this.orderStatusHubContext = orderStatusHubContext;
+        }
 
         // GET: api/<controller>
         [HttpGet]
@@ -32,7 +37,7 @@ namespace RealtimeOrders.API.Controllers
         [HttpPost]
         public async Task PostAsync([FromBody]Order order)
         {
-            await orderStatusHub.Clients.All.SendAsync("NewOrder", new object[] { order});
+            await orderStatusHubContext.Clients.All.NewOrderPlaced(order);
         }
 
         // PUT api/<controller>/5
