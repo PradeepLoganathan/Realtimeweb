@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  realtimeorders.api:
+    image: ${DOCKER_REGISTRY-}realtimeordersapi    
+    depends_on:
+      - redis_db      
+    build:
+      context: .
+      dockerfile: RealtimeOrders.API/Dockerfile
+   
+  realtimeorders.console:
+    image: ${DOCKER_REGISTRY-}realtimeordersclientconsole
+    build:
+      context: .
+      dockerfile: RealtimeOrders.Client.Console/Dockerfile
+   
+  redis_db:
+    image: ${DOCKER_REGISTRY-}redis
+    ports:
+       - "6379:6379"

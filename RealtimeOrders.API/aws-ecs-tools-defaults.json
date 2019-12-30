@@ -1,0 +1,26 @@
+
+{
+    "region" : "ap-southeast-2",
+    "profile" : "youi-wrk-playpen",
+    "configuration" : "Release",
+    "tag"           : "realtimeordersapi:latest",
+    "docker-build-working-dir" : "",
+    "cluster"                  : "pradeepcluster",
+    "launch-type"              : "FARGATE",
+    "launch-subnets"           : "subnet-024c3a217f421b8e4",
+    "launch-security-groups"   : "sg-0d130874b8e56e62c",
+    "assign-public-ip"         : true,
+    "task-definition-name"     : "RealtimeOrdersAPI-task",
+    "task-cpu"                 : "256",
+    "task-memory"              : "512",
+    "task-execution-role"      : "ecsTaskExecutionRole",
+    "container-name"           : "RealtimeOrdersAPI-container",
+    "container-port-mapping"   : "80:80",
+    "container-environment-variables" : "\"ASPNETCORE_ENVIRONMENT\"=\"Production\"",
+    "skip-image-push"                 : false,
+    "cluster-service"                 : "RealtimeOrdersAPI-service",
+    "desired-count"                   : 1,
+    "deployment-minimum-healthy-percent" : 50,
+    "deployment-maximum-percent"         : 200,
+    "vstoolkit-deployment-mode"          : "DeployService"
+}

@@ -34,7 +34,8 @@ namespace RealtimeOrders.API
                     .AllowAnyOrigin();
             }));
             services.AddControllers();
-            services.AddSignalR().AddStackExchangeRedis();
+            //services.AddSignalR();
+            services.AddSignalR().AddStackExchangeRedis("redis_db:6379");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

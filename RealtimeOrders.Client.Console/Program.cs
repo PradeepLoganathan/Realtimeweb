@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 
@@ -9,13 +9,23 @@ namespace RealtimeOrders.Client.Console
 {
     class Program
     {
-        static async Task Main()
+        static async Task Main(string[] args)
         {
-            System.Console.WriteLine("Orders console client started..");
+            System.Console.Title = "RealtimeOrders.Client.Console";
 
+            //#region configuration
+            //IConfiguration Configuration = new ConfigurationBuilder()
+            //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            //    .AddEnvironmentVariables()
+            //    .AddCommandLine(args)
+            //    .Build();
+            //#endregion
+
+            //var path = Environment.GetEnvironmentVariable("huburl");
+            //System.Console.WriteLine("Orders console client started..");            
             //create the connection to the order status hub
             var connection = new HubConnectionBuilder()
-                .WithUrl(new Uri("https://localhost:5001/orderstatushub"))
+                .WithUrl(new Uri("https://realtimeorders.api:32776/orderstatushub"))
                 .ConfigureLogging(logging =>
                 {
                     logging.AddConsole();

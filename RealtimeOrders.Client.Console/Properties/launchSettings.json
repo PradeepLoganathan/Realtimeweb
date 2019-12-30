@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RealtimeOrders.Client.Console": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
