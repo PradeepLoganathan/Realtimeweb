@@ -24,8 +24,13 @@ namespace RealtimeOrders.Client.Console
             //var path = Environment.GetEnvironmentVariable("huburl");
             //System.Console.WriteLine("Orders console client started..");            
             //create the connection to the order status hub
+            //Uri OrderStatusHubPath = new UriBuilder("https", "localhost", 32776, "orderstatushub").Uri;
+            //Uri OrderStatusHubPath = new Uri("http://realtimeorders.api/orderstatushub");
+            //Uri OrderStatusHubPath = new Uri("http://realtimeorders.api/orderstatushub");
+            //Uri OrderStatusHubPath = new Uri("http://realtimeorders.api/orderstatushub");
+            Uri OrderStatusHubPath = new Uri("http://localhost:32775/orderstatushub");
             var connection = new HubConnectionBuilder()
-                .WithUrl(new Uri("https://realtimeorders.api:32776/orderstatushub"))
+                .WithUrl(OrderStatusHubPath)
                 .ConfigureLogging(logging =>
                 {
                     logging.AddConsole();
@@ -45,6 +50,7 @@ namespace RealtimeOrders.Client.Console
                 return Task.CompletedTask;
             };
 
+            
 
             System.Console.WriteLine("Starting connection to check for any new orders. Press Ctrl-C to close.");
             
